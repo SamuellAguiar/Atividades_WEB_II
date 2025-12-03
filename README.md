@@ -8,8 +8,6 @@ Este repositório contém a implementação do microsserviço de **Vendas (Sales
 * **Spring Boot 3** (Web, Data JPA)
 * **PostgreSQL** (Banco de Dados)
 * **Docker & Docker Compose** (Containerização do Banco)
-* **Lombok** (Redução de código repetitivo)
-* **Maven** (Gerenciamento de dependências)
 
 ## ⚙️ Arquitetura
 
