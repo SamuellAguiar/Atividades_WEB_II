@@ -14,7 +14,6 @@ public class CreateEventUseCase {
     }
 
     public void validate() {
-        // Validação simples igual a estrutura do professor
         if (eventDomain.getPrice() != null && eventDomain.getPrice() < 0) {
             throw new UseCaseException("Price cannot be negative.");
         }
