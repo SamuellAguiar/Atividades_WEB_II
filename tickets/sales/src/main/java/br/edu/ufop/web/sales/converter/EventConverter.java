@@ -7,7 +7,7 @@ import br.edu.ufop.web.sales.entity.EventEntity;
 
 public class EventConverter {
 
-    // Converte de Entity (Banco) para DTO (Saída da API)
+    // Converte de Entity (Banco) para DTO
     public static EventDTO toEventDTO(EventEntity entity) {
         EventDTO dto = new EventDTO();
         dto.setId(entity.getId());
@@ -20,7 +20,7 @@ public class EventConverter {
         return dto;
     }
 
-    // Converte de Entity (Banco) para Domain (Regra de Negócio)
+    // Converte de Entity (Banco) para Domain
     public static EventDomain toEventDomain(EventEntity entity) {
         EventDomain domain = new EventDomain();
         domain.setId(entity.getId());
@@ -42,9 +42,9 @@ public class EventConverter {
         return domain;
     }
 
-    // Converte de Domain para Entity (Para salvar no Banco)
+    // Converte de Domain para Entity
     public static EventEntity toEventEntity(EventDomain domain) {
-        return EventEntity.builder() // Usando o Builder do Lombok igual sua Entity
+        return EventEntity.builder()
                 .id(domain.getId())
                 .description(domain.getDescription())
                 .type(domain.getType())
