@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_sales") // Prefixo tb_
+@Table(name = "tb_sales")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,13 +19,10 @@ public class SaleEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    // Relacionamento: Muitas vendas pertencem a UM evento
-    // O "nullable = false" obriga a venda a ter um evento vinculado
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private EventEntity event;
 
-    // Guardamos apenas o ID do usuário (pois ele vem do microsserviço Users)
     @Column(nullable = false)
     private UUID userId;
 
@@ -34,7 +31,6 @@ public class SaleEntity {
     // Status: 1-Aberto, 2-Pago, 3-Cancelado
     private Integer saleStatus;
 
-    // Auditoria
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
