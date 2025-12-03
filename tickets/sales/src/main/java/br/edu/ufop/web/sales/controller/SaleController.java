@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/sales") // URL base: http://localhost:4000/sales
+@RequestMapping("/sales")
 @RequiredArgsConstructor
 public class SaleController {
 
@@ -24,7 +24,7 @@ public class SaleController {
         return ResponseEntity.ok("Sales Service (Sales) is running!");
     }
 
-    // 1. Criar Venda (Comprar Ingresso)
+    // 1. Criar Venda
     @PostMapping
     public ResponseEntity<SaleDTO> create(@RequestBody CreateSaleDTO createSaleDTO) {
         return ResponseEntity.ok(saleService.create(createSaleDTO));
