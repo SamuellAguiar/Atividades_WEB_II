@@ -8,7 +8,6 @@ import java.util.UUID;
 public class SaleDomain {
     private UUID id;
 
-    // O domínio de venda conhece o domínio de evento
     private EventDomain event;
 
     private UUID userId;
