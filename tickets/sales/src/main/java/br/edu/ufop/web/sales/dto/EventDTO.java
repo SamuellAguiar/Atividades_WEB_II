@@ -4,7 +4,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data // O Lombok cria getters, setters e toString automaticamente
+@Data
 public class EventDTO {
     private UUID id;
     private String description;
