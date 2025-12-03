@@ -7,9 +7,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_events") // Padrão do professor: prefixo tb_
+@Table(name = "tb_events")
 
-// -- LOMBOK (A mágica que evita código repetitivo) --
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,10 +17,10 @@ import java.util.UUID;
 public class EventEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // O professor usou AUTO para gerar o ID
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false) // Obrigatório
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
@@ -33,7 +32,6 @@ public class EventEntity {
 
     private Double price;
 
-    // -- Auditoria (Controle de datas igual ao UserEntity) --
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
