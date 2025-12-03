@@ -20,7 +20,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EventService {
 
-    // Injeção de dependências igual ao do professor
     private final IEventRepository repository;
     private final CreateEventUseCase useCase;
 
@@ -64,7 +63,7 @@ public class EventService {
 
     // 4. Buscar por Descrição (Adaptação do getByName)
     public List<EventDTO> getByDescription(String description) {
-        // Usando o método LIKE que criamos no Repository
+
         List<EventEntity> list = repository.findAllDescriptionLike(description);
 
         return list.stream()
