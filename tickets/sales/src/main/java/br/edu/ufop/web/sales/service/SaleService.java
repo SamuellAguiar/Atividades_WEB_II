@@ -23,7 +23,7 @@ import java.util.UUID;
 public class SaleService {
 
     private final ISaleRepository saleRepository;
-    private final IEventRepository eventRepository; // Precisamos disso para buscar o evento
+    private final IEventRepository eventRepository;
     private final CreateSaleUseCase createSaleUseCase;
 
     // 1. Criar Venda
@@ -31,7 +31,7 @@ public class SaleService {
         // Converte o básico (IDs)
         SaleDomain saleDomain = SaleConverter.toSaleDomain(createDTO);
 
-        // BUSCAR O EVENTO NO BANCO (Passo Crucial)
+        // BUSCAR O EVENTO NO BANCO
         Optional<EventEntity> eventOptional = eventRepository.findById(createDTO.getEventId());
 
         if (eventOptional.isEmpty()) {
