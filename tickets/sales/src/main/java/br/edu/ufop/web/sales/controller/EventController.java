@@ -13,13 +13,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/events") // Define a URL base: http://localhost:4000/events
-@RequiredArgsConstructor // Injeta o Service automaticamente (igual ao do professor)
+@RequestMapping("/events")
+@RequiredArgsConstructor
 public class EventController {
 
     private final EventService eventService;
 
-    // Teste de fumaça (para saber se o serviço está no ar)
+    // Teste de fumaça
     @GetMapping("/status")
     public ResponseEntity<String> getStatus() {
         return ResponseEntity.ok("Sales Service (Events) is running!");
@@ -42,12 +42,11 @@ public class EventController {
     public ResponseEntity<EventDTO> getById(@PathVariable("id") UUID id) {
         Optional<EventDTO> eventDTO = eventService.getById(id);
 
-        // Se estiver vazio, retorna 404 (Not Found). Se achar, retorna 200 (OK)
         return eventDTO.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // 4. Buscar por Descrição (Igual ao getByName do professor)
+    // 4. Buscar por Descrição
     @GetMapping("/description/{text}")
     public ResponseEntity<List<EventDTO>> getByDescription(@PathVariable("text") String text) {
         List<EventDTO> list = eventService.getByDescription(text);
@@ -65,7 +64,6 @@ public class EventController {
     }
 
     // 6. Deletar
-    // Diferente do usuário (que pedia senha), aqui deletamos direto pelo ID na URL
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") UUID id) {
         eventService.delete(id);
