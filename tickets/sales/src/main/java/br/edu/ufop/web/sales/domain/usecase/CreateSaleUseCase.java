@@ -23,8 +23,5 @@ public class CreateSaleUseCase {
         if (saleDomain.getEvent() == null) {
             throw new UseCaseException("Event is required for a sale.");
         }
-
-        // Regra 3: O evento já aconteceu? (Opcional, mas legal ter)
-        // if (saleDomain.getEvent().getDate().isBefore(LocalDateTime.now())) { ... }
     }
 }
