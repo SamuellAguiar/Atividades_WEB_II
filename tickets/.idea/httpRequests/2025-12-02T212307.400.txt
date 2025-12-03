@@ -1,0 +1,1 @@
+[UseCaseException] Erro na validação - User ID does not found.

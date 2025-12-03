@@ -1,0 +1,69 @@
+###
+@urlServer = http://localhost:8081
+
+###
+GET {{urlServer}}/users/status
+###
+
+GET {{urlServer}}/ccn
+
+###
+POST {{urlServer}}/ccn
+Content-Type: application/json
+
+{
+  "name": "Master"
+}
+
+###
+GET {{urlServer}}/users
+
+###
+POST {{urlServer}}/users
+Content-Type: application/json
+
+{
+  "name": "Maria Fernanda",
+  "creditCardNetworkId": "211738a5-d816-474a-85d9-bb688606921a",
+  "email": "mariafernanda@web.ufop.edu.br",
+  "password": "123456"
+}
+
+###
+GET {{urlServer}}/users/74ff0eb8-ce65-4674-9efb-54857b651cca
+
+###
+GET {{urlServer}}/users/name/Maria
+
+###
+PUT {{urlServer}}/users
+Content-Type: application/json
+
+{
+  "id": "12d6fc05-82ba-406c-97d4-afa88fcdeb51",
+  "name": "Maria Tereza",
+  "city": "Itabira"
+}
+###
+DELETE {{urlServer}}/users
+Content-Type: application/json
+
+{
+  "id": "12d6fc05-82ba-406c-97d4-afa88fcdeb51",
+  "password": "123456"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

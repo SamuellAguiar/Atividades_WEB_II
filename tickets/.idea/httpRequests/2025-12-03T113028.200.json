@@ -1,0 +1,15 @@
+{
+  "id": "dc1fd2f0-2f60-457d-b905-e375bca0b0a4",
+  "event": {
+    "id": "9bc4b360-e96f-4e4c-b6d0-fde454161958",
+    "description": "Show do Rock in Rio 2025",
+    "type": 1,
+    "date": "2025-09-20T20:00:00",
+    "price": 450.0,
+    "startSales": "2025-01-01T08:00:00",
+    "endSales": "2025-09-19T23:59:00"
+  },
+  "userId": "74ff0eb8-ce65-4674-9efb-54857b651cca",
+  "saleDate": "2025-12-03T11:30:02.275079",
+  "saleStatus": 1
+}
