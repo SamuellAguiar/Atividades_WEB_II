@@ -7,7 +7,7 @@ import br.edu.ufop.web.sales.entity.SaleEntity;
 
 public class SaleConverter {
 
-    // 1. Entity -> DTO (Para mostrar na API)
+    // 1. Entity -> DTO
     public static SaleDTO toSaleDTO(SaleEntity entity) {
         SaleDTO dto = new SaleDTO();
         dto.setId(entity.getId());
@@ -15,7 +15,6 @@ public class SaleConverter {
         dto.setSaleDate(entity.getSaleDate());
         dto.setSaleStatus(entity.getSaleStatus());
 
-        // A parte legal: Convertemos também o evento aninhado
         if (entity.getEvent() != null) {
             dto.setEvent(EventConverter.toEventDTO(entity.getEvent()));
         }
@@ -23,7 +22,7 @@ public class SaleConverter {
         return dto;
     }
 
-    // 2. Entity -> Domain (Para usar nas regras)
+    // 2. Entity -> Domain
     public static SaleDomain toSaleDomain(SaleEntity entity) {
         SaleDomain domain = new SaleDomain();
         domain.setId(entity.getId());
@@ -38,23 +37,21 @@ public class SaleConverter {
         return domain;
     }
 
-    // 3. CreateDTO -> Domain (Entrada da API)
+    // 3. CreateDTO -> Domain
     public static SaleDomain toSaleDomain(CreateSaleDTO dto) {
         SaleDomain domain = new SaleDomain();
-        // Note: O DTO só tem IDs. O Service vai buscar o objeto Evento completo depois.
         domain.setUserId(dto.getUserId());
-        // domain.setEvent(...) será preenchido no Service
+
         return domain;
     }
 
-    // 4. Domain -> Entity (Para salvar no Banco)
+    // 4. Domain -> Entity
     public static SaleEntity toSaleEntity(SaleDomain domain) {
         return SaleEntity.builder()
                 .id(domain.getId())
                 .userId(domain.getUserId())
                 .saleDate(domain.getSaleDate())
                 .saleStatus(domain.getSaleStatus())
-                // O Service já deve ter preenchido o EventDomain antes de chamar aqui
                 .event(EventConverter.toEventEntity(domain.getEvent()))
                 .build();
     }
