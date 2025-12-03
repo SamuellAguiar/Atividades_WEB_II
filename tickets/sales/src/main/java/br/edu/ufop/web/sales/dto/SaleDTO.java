@@ -8,7 +8,6 @@ import java.util.UUID;
 public class SaleDTO {
     private UUID id;
 
-    // Na saída, retornamos o objeto Evento completo para facilitar o frontend
     private EventDTO event;
 
     private UUID userId;
