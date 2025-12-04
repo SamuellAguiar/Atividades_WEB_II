@@ -5,7 +5,9 @@ import br.edu.ufop.web.sales.converter.SaleConverter;
 import br.edu.ufop.web.sales.domain.SaleDomain;
 import br.edu.ufop.web.sales.domain.usecase.CreateSaleUseCase;
 import br.edu.ufop.web.sales.dto.CreateSaleDTO;
+import br.edu.ufop.web.sales.dto.DeleteSaleDTO;
 import br.edu.ufop.web.sales.dto.SaleDTO;
+import br.edu.ufop.web.sales.dto.UpdateSaleDTO; // Importe o DTO novo
 import br.edu.ufop.web.sales.entity.EventEntity;
 import br.edu.ufop.web.sales.entity.SaleEntity;
 import br.edu.ufop.web.sales.exception.UseCaseException;
@@ -28,27 +30,20 @@ public class SaleService {
 
     // 1. Criar Venda
     public SaleDTO create(CreateSaleDTO createDTO) {
-        // Converte o básico (IDs)
         SaleDomain saleDomain = SaleConverter.toSaleDomain(createDTO);
 
-        // BUSCAR O EVENTO NO BANCO
         Optional<EventEntity> eventOptional = eventRepository.findById(createDTO.getEventId());
 
         if (eventOptional.isEmpty()) {
             throw new UseCaseException("Event not found with ID: " + createDTO.getEventId());
         }
 
-        // Vincula o evento encontrado ao domínio da venda
         saleDomain.setEvent(EventConverter.toEventDomain(eventOptional.get()));
+        saleDomain.setSaleStatus(1); // 1 = Aberto
 
-        // Define status inicial (1 = Aberto/Pendente)
-        saleDomain.setSaleStatus(1);
-
-        // Valida regras
         createSaleUseCase.setSaleDomain(saleDomain);
         createSaleUseCase.validate();
 
-        // Salva
         SaleEntity entity = saleRepository.save(
                 SaleConverter.toSaleEntity(saleDomain)
         );
@@ -56,7 +51,7 @@ public class SaleService {
         return SaleConverter.toSaleDTO(entity);
     }
 
-    // 2. Listar todas
+    // 2. Listar todas (O Hibernate vai filtrar active=true automaticamente)
     public List<SaleDTO> getAll() {
         return saleRepository.findAll().stream()
                 .map(SaleConverter::toSaleDTO)
@@ -69,10 +64,62 @@ public class SaleService {
                 .map(SaleConverter::toSaleDTO);
     }
 
-    // 4. Listar vendas de um usuário (Extra)
+    // 4. Listar vendas de um usuário
     public List<SaleDTO> getByUserId(UUID userId) {
         return saleRepository.findAllByUserId(userId).stream()
                 .map(SaleConverter::toSaleDTO)
                 .toList();
+    }
+
+    // --- NOVOS MÉTODOS ---
+
+    // 5. Atualizar Venda
+    public SaleDTO update(UpdateSaleDTO updateDTO) {
+        // Verifica se existe
+        Optional<SaleEntity> entityOptional = saleRepository.findById(updateDTO.getId());
+
+        if (entityOptional.isEmpty()) {
+            throw new UseCaseException("Sale ID not found.");
+        }
+
+        SaleEntity entity = entityOptional.get();
+
+        // Atualiza apenas se o valor foi enviado (não nulo)
+        if (updateDTO.getSaleStatus() != null) {
+            entity.setSaleStatus(updateDTO.getSaleStatus());
+        }
+        if (updateDTO.getSaleDate() != null) {
+            entity.setSaleDate(updateDTO.getSaleDate());
+        }
+
+        // Salva as alterações
+        saleRepository.save(entity);
+
+        return SaleConverter.toSaleDTO(entity);
+    }
+
+    // 6. Soft Delete com Motivo Obrigatório
+    public void delete(DeleteSaleDTO deleteDTO) {
+        // 1. Validação: O motivo é obrigatório!
+        if (deleteDTO.getReason() == null || deleteDTO.getReason().trim().isEmpty()) {
+            throw new UseCaseException("Cancellation reason is required.");
+        }
+
+        // 2. Busca a venda
+        Optional<SaleEntity> entityOptional = saleRepository.findById(deleteDTO.getId());
+
+        if (entityOptional.isEmpty()) {
+            throw new UseCaseException("Sale ID not found.");
+        }
+
+        SaleEntity entity = entityOptional.get();
+
+        // 3. Salva o motivo do cancelamento ANTES de deletar
+        // Precisamos salvar explicitamente, pois o @SQLDelete só atualiza o campo 'active'
+        entity.setCancelReason(deleteDTO.getReason());
+        saleRepository.save(entity);
+
+        // 4. Executa o Soft Delete (active = false)
+        saleRepository.delete(entity);
     }
 }

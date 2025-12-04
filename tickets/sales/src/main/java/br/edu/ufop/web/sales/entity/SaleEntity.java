@@ -34,6 +34,11 @@ public class SaleEntity {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    private String cancelReason;
+
+    @Column(nullable = false)
+    private Boolean active = false;
+
     // Preenche datas automaticamente
     @PrePersist
     public void beforeSave() {
