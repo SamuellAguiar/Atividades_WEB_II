@@ -24,13 +24,13 @@ Content-Type: application/json
 
 {
   "name": "Maria Fernanda",
-  "creditCardNetworkId": "211738a5-d816-474a-85d9-bb688606921a",
+  "creditCardNetworkId": "e97fa53b-0662-4cc4-8db4-0c5d9d6a7107",
   "email": "mariafernanda@web.ufop.edu.br",
   "password": "123456"
 }
 
 ###
-GET {{urlServer}}/users/74ff0eb8-ce65-4674-9efb-54857b651cca
+GET {{urlServer}}/users/63f9ac31-b67f-4366-8128-7f82e72f6060
 
 ###
 GET {{urlServer}}/users/name/Maria
@@ -40,7 +40,7 @@ PUT {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "id": "12d6fc05-82ba-406c-97d4-afa88fcdeb51",
+  "id": "71b977da-10cf-4ba0-b9af-234df7731075",
   "name": "Maria Tereza",
   "city": "Itabira"
 }
@@ -49,7 +49,7 @@ DELETE {{urlServer}}/users
 Content-Type: application/json
 
 {
-  "id": "12d6fc05-82ba-406c-97d4-afa88fcdeb51",
+  "id": "71b977da-10cf-4ba0-b9af-234df7731075",
   "password": "123456"
 }
 

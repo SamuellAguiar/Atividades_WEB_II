@@ -1,46 +1,84 @@
-### --- TESTES DE EVENTOS ---
+###
+@urlServer = http://localhost:4000
 
-### Configuração da URL (Porta 4000)
-@urlSales = http://localhost:4000
+### --- EVENTOS ---
 
-### 1. Verificar Status
-GET {{urlSales}}/events/status
+###
+GET {{urlServer}}/events/status
 
-### 2. Criar um Evento
-POST {{urlSales}}/events
+###
+GET {{urlServer}}/events
+
+###
+POST {{urlServer}}/events
 Content-Type: application/json
 
 {
-  "description": "Show do Rock in Rio 2025",
+  "description": "Show do Rock - UFOP",
   "type": 1,
-  "price": 450.00,
-  "date": "2025-09-20T20:00:00",
+  "price": 100.00,
+  "date": "2025-12-25T20:00:00",
   "startSales": "2025-01-01T08:00:00",
-  "endSales": "2025-09-19T23:59:00"
+  "endSales": "2025-12-24T23:59:00"
 }
 
-### 3. Listar todos
-GET {{urlSales}}/events
+###
+GET {{urlServer}}/events/d8e6297d-eeee-4cba-a224-ee6354c745bc
 
-### 4. Buscar por ID
-GET {{urlSales}}/events/9bc4b360-e96f-4e4c-b6d0-fde454161958
-
-### --- TESTES DE VENDAS ---
-
-
-### 1. Criar uma Venda
-# Para funcionar, você precisa pegar um ID de Evento VÁLIDO que você criou lá em cima
-# e um ID de usuário qualquer (invente um UUID se não tiver o microsserviço Users rodando)
-POST {{urlSales}}/sales
+###
+PUT {{urlServer}}/events/d8e6297d-eeee-4cba-a224-ee6354c745bc
 Content-Type: application/json
 
 {
-  "eventId": "9bc4b360-e96f-4e4c-b6d0-fde454161958",
-  "userId": "74ff0eb8-ce65-4674-9efb-54857b651cca"
+  "description": "Show do Rock - ADIADO",
+  "type": 1,
+  "price": 100.00,
+  "date": "2026-01-01T20:00:00",
+  "startSales": "2025-01-01T08:00:00",
+  "endSales": "2025-12-31T23:59:00"
 }
 
-### 2. Listar todas as Vendas
-GET {{urlSales}}/sales
+###
+DELETE {{urlServer}}/events/d8e6297d-eeee-4cba-a224-ee6354c745bc
 
-### 3. Consultar Venda Específica (Copie o ID gerado no passo 1)
-GET {{urlSales}}/sales/dc1fd2f0-2f60-457d-b905-e375bca0b0a4
+
+### --- VENDAS ---
+
+###
+GET {{urlServer}}/sales/status
+
+###
+GET {{urlServer}}/sales
+
+###
+POST {{urlServer}}/sales
+Content-Type: application/json
+
+{
+  "eventId": "59807b4b-82d6-4555-8604-4a9f8935f771",
+  "userId": "63f9ac31-b67f-4366-8128-7f82e72f6060"
+}
+
+###
+GET {{urlServer}}/sales/d2b4e65a-0205-4d48-9774-136294ef0e0cI
+
+###
+GET {{urlServer}}/sales/user/63f9ac31-b67f-4366-8128-7f82e72f6060
+
+###
+PUT {{urlServer}}/sales
+Content-Type: application/json
+
+{
+  "id": "COLE-O-UUID-DA-VENDA-AQUI",
+  "saleStatus": 2
+}
+
+###
+DELETE {{urlSales}}/sales
+Content-Type: application/json
+
+{
+  "id": "COLE-O-UUID-DA-VENDA-AQUI",
+  "reason": "Cliente desistiu da compra pois achou caro"
+}
