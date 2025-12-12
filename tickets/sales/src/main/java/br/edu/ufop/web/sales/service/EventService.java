@@ -26,27 +26,22 @@ public class EventService {
     // 1. Listar todos
     public List<EventDTO> getAll() {
         List<EventEntity> list = repository.findAll();
-        // Converte a lista de entidades para DTOs usando Stream
         return list.stream()
                 .map(EventConverter::toEventDTO)
                 .toList();
     }
 
-    // 2. Criar
+    // 2. Criar Evento
     public EventDTO create(CreateEventDTO createEventDTO) {
-        // Converte DTO para Domínio
         EventDomain eventDomain = EventConverter.toEventDomain(createEventDTO);
 
-        // Invoca o UseCase para validar as regras
         useCase.setEventDomain(eventDomain);
         useCase.validate();
 
-        // Converte Domínio para Entidade e Salva
         EventEntity entity = repository.save(
                 EventConverter.toEventEntity(eventDomain)
         );
 
-        // Retorna o DTO
         return EventConverter.toEventDTO(entity);
     }
 
@@ -61,7 +56,7 @@ public class EventService {
         return Optional.of(EventConverter.toEventDTO(entityOptional.get()));
     }
 
-    // 4. Buscar por Descrição (Adaptação do getByName)
+    // 4. Buscar por Descrição
     public List<EventDTO> getByDescription(String description) {
 
         List<EventEntity> list = repository.findAllDescriptionLike(description);
@@ -73,7 +68,6 @@ public class EventService {
 
     // 5. Atualizar
     public EventDTO update(UpdateEventDTO updateDTO) {
-        // Verifica se existe
         Optional<EventEntity> entityOptional = repository.findById(updateDTO.getId());
 
         if (entityOptional.isEmpty()) {
@@ -82,7 +76,6 @@ public class EventService {
 
         EventEntity entity = entityOptional.get();
 
-        // Atualiza os campos
         entity.setDescription(updateDTO.getDescription());
         entity.setPrice(updateDTO.getPrice());
         entity.setType(updateDTO.getType());
