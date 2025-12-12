@@ -7,7 +7,6 @@ import br.edu.ufop.web.sales.entity.EventEntity;
 
 public class EventConverter {
 
-    // Converte de Entity (Banco) para DTO
     public static EventDTO toEventDTO(EventEntity entity) {
         EventDTO dto = new EventDTO();
         dto.setId(entity.getId());
@@ -20,7 +19,6 @@ public class EventConverter {
         return dto;
     }
 
-    // Converte de Entity (Banco) para Domain
     public static EventDomain toEventDomain(EventEntity entity) {
         EventDomain domain = new EventDomain();
         domain.setId(entity.getId());
@@ -30,7 +28,6 @@ public class EventConverter {
         return domain;
     }
 
-    // Converte de DTO de Criação para Domain
     public static EventDomain toEventDomain(CreateEventDTO dto) {
         EventDomain domain = new EventDomain();
         domain.setDescription(dto.getDescription());
@@ -42,7 +39,6 @@ public class EventConverter {
         return domain;
     }
 
-    // Converte de Domain para Entity
     public static EventEntity toEventEntity(EventDomain domain) {
         return EventEntity.builder()
                 .id(domain.getId())

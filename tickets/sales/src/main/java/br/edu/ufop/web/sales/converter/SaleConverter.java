@@ -7,7 +7,6 @@ import br.edu.ufop.web.sales.entity.SaleEntity;
 
 public class SaleConverter {
 
-    // 1. Entity -> DTO
     public static SaleDTO toSaleDTO(SaleEntity entity) {
         SaleDTO dto = new SaleDTO();
         dto.setId(entity.getId());
@@ -22,7 +21,6 @@ public class SaleConverter {
         return dto;
     }
 
-    // 2. Entity -> Domain
     public static SaleDomain toSaleDomain(SaleEntity entity) {
         SaleDomain domain = new SaleDomain();
         domain.setId(entity.getId());
@@ -37,7 +35,6 @@ public class SaleConverter {
         return domain;
     }
 
-    // 3. CreateDTO -> Domain
     public static SaleDomain toSaleDomain(CreateSaleDTO dto) {
         SaleDomain domain = new SaleDomain();
         domain.setUserId(dto.getUserId());
@@ -45,7 +42,6 @@ public class SaleConverter {
         return domain;
     }
 
-    // 4. Domain -> Entity
     public static SaleEntity toSaleEntity(SaleDomain domain) {
         return SaleEntity.builder()
                 .id(domain.getId())
