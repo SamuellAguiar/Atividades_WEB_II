@@ -19,25 +19,21 @@ public class EventController {
 
     private final EventService eventService;
 
-    // Teste de fumaça
     @GetMapping("/status")
     public ResponseEntity<String> getStatus() {
         return ResponseEntity.ok("Sales Service (Events) is running!");
     }
 
-    // 1. Listar todos
     @GetMapping
     public ResponseEntity<List<EventDTO>> getAll() {
         return ResponseEntity.ok(eventService.getAll());
     }
 
-    // 2. Criar novo evento
     @PostMapping
     public ResponseEntity<EventDTO> create(@RequestBody CreateEventDTO createEventDTO) {
         return ResponseEntity.ok(eventService.create(createEventDTO));
     }
 
-    // 3. Buscar por ID
     @GetMapping("/{id}")
     public ResponseEntity<EventDTO> getById(@PathVariable("id") UUID id) {
         Optional<EventDTO> eventDTO = eventService.getById(id);
@@ -46,7 +42,6 @@ public class EventController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // 4. Buscar por Descrição
     @GetMapping("/description/{text}")
     public ResponseEntity<List<EventDTO>> getByDescription(@PathVariable("text") String text) {
         List<EventDTO> list = eventService.getByDescription(text);
@@ -57,13 +52,11 @@ public class EventController {
         return ResponseEntity.ok(list);
     }
 
-    // 5. Atualizar
     @PutMapping
     public ResponseEntity<EventDTO> update(@RequestBody UpdateEventDTO updateEventDTO) {
         return ResponseEntity.ok(eventService.update(updateEventDTO));
     }
 
-    // 6. Deletar
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") UUID id) {
         eventService.delete(id);
