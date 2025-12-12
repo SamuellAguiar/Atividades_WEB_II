@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 @Data
 public class CreateEventDTO {
-    // Não precisa de ID, pois é criação
     private String description;
     private Integer type;
     private LocalDateTime date;

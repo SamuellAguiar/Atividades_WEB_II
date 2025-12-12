@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class UpdateEventDTO {
-    private UUID id; // Obrigatório para saber qual evento atualizar
+    private UUID id;
     private String description;
     private Integer type;
     private LocalDateTime date;
