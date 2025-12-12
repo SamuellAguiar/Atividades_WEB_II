@@ -4,10 +4,13 @@ Este repositório contém a implementação do microsserviço de **Vendas (Sales
 
 ## 🚀 Tecnologias Utilizadas
 
-* **Java 17**
-* **Spring Boot 3** (Web, Data JPA)
-* **PostgreSQL** (Banco de Dados)
-* **Docker & Docker Compose** (Containerização do Banco)
+[![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
+
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff)](#)
+
+[![Postgres](https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white)](#)
+
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
 
 ## ⚙️ Arquitetura
 
