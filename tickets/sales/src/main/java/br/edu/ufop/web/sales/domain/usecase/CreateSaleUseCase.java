@@ -14,12 +14,10 @@ public class CreateSaleUseCase {
     }
 
     public void validate() {
-        // Regra 1: Tem que ter usuário
         if (saleDomain.getUserId() == null) {
             throw new UseCaseException("User ID is required for a sale.");
         }
 
-        // Regra 2: Tem que ter evento vinculado
         if (saleDomain.getEvent() == null) {
             throw new UseCaseException("Event is required for a sale.");
         }
