@@ -39,13 +39,11 @@ public class SaleEntity {
     @Column(nullable = false)
     private Boolean active = false;
 
-    // Preenche datas automaticamente
     @PrePersist
     public void beforeSave() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
 
-        // Se a data da venda não for passada, assume agora
         if (this.saleDate == null) {
             this.saleDate = LocalDateTime.now();
         }

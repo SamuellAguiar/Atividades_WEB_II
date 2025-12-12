@@ -24,25 +24,23 @@ public class EventEntity {
     private String description;
 
     @Column(nullable = false)
-    private Integer type; // Tipo do evento (1=Show, 2=Teatro, etc.)
+    private Integer type;
 
-    private LocalDateTime date;       // Data do evento
-    private LocalDateTime startSales; // Início das vendas
-    private LocalDateTime endSales;   // Fim das vendas
+    private LocalDateTime date;
+    private LocalDateTime startSales;
+    private LocalDateTime endSales;
 
     private Double price;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    // Executado automaticamente ANTES de salvar no banco
     @PrePersist
     public void beforeSave() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
-    // Executado automaticamente ANTES de atualizar
     @PreUpdate
     public void beforeUpdate() {
         this.updatedAt = LocalDateTime.now();
