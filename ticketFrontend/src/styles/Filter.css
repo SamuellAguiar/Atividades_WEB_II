@@ -1,0 +1,19 @@
+/* Filter.css */
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+    position: sticky; /* Fica fixo no topo apenas quando você rola a página */
+    top: 0;
+    z-index: 10;
+}
+
+.filter-item {
+    font-weight: 500;
+    color: #475569;
+}
