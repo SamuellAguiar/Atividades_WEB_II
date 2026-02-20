@@ -1,8 +1,8 @@
-# 🎫 Sistema de Gerenciamento de Ingressos - Microsserviço Sales
+# Sistema de Gerenciamento de Ingressos - Microsserviço Sales
 
 Este repositório contém a implementação do microsserviço de **Vendas (Sales)** para o Sistema de Gerenciamento de Tickets. O projeto foi desenvolvido como parte da disciplina de Sistemas Web II, utilizando **Java**, **Spring Boot** e **Docker**.
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 [![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
 
@@ -12,7 +12,7 @@ Este repositório contém a implementação do microsserviço de **Vendas (Sales
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
 
-## ⚙️ Arquitetura
+## Arquitetura
 
 O projeto segue uma arquitetura em camadas para garantir a separação de responsabilidades:
 * **Controller:** Camada de API (REST).

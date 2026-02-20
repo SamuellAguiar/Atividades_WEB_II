@@ -1,1 +1,0 @@
-[UseCaseException] Erro na validação - Credit Card Network ID does not exist.
