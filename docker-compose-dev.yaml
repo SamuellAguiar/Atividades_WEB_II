@@ -1,0 +1,29 @@
+services:
+  pgsql-ticket:
+    image: postgres:16-alpine
+    ports:
+      #* Mapeia a porta do Host local com o container
+      - "15432:5432"
+    environment:
+      - POSTGRES_USER=psql-ticket-master
+      - POSTGRES_PASSWORD=pgmaster
+    volumes:
+      - ./01-create-database-users.sql:/docker-entrypoint-initdb.d/01.sql
+      - ./02-create-database-sales.sql:/docker-entrypoint-initdb.d/02.sql
+      - ./03-create-database-notifications.sql:/docker-entrypoint-initdb.d/03.sql
+    networks:
+      - backend
+  pgadmin:
+    image: dpage/pgadmin4:9.3.0
+    ports:
+      - "8000:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=web@ufop.edu.br
+      - PGADMIN_DEFAULT_PASSWORD=pgmaster
+    networks:
+      - backend
+
+#* Definição das redes onde cada parte do projeto será executado
+networks:
+  frontend:
+  backend:
