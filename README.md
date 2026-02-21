@@ -1,4 +1,11 @@
 # Sistema de Gerenciamento de Ingressos - Microsserviço Sales
+> **Atividade Prática 01 - Implementação do microsserviço de Vendas de Ingressos**
+
+> **Atividade Prática 02 - Implementação da interface do Sistemas de Ingressos**
+
+> **Disciplina:** CSI607 - Sistemas WEB II (2025/2)
+
+> **Professor:** Fernando Bernardes de Oliveira, Ph.D
 
 Este projeto é uma plataforma completa de gerenciamento e venda de ingressos, desenvolvida para a disciplina de **Sistemas Web II**. A solução utiliza uma arquitetura de microsserviços para garantir escalabilidade, independência de serviços e alta disponibilidade.
 
