@@ -19,6 +19,7 @@ Certifique-se de que o Docker está rodando os containers do PostgreSQL para os 
 
 - 2.1. **Nameservice (Eureka Server):** Porta *8761*. O coração do sistema onde todos os serviços se registram.
 
+
 - 2.2.  **Microsserviços de Negócio:** 
   -  *Users-Service:* Porta 3000
   -  *Sales-Service:* Porta 3030
